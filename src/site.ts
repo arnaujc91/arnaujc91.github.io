@@ -8,7 +8,7 @@ export const site = {
   blogName: "Blog",
   blogDescription: "about Physics and Deep Learning",
   githubUsername: "arnaujc91",
-  linkedinUrl: "https://www.linkedin.com/in/arnaujc91/",
+  linkedinUrl: "https://www.linkedin.com/in/arnau-jim%C3%A9nez-castany-b2ba2597/",
 };
 
 export const fullName = [site.firstName, site.middleName, site.lastName]
