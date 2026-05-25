@@ -6,6 +6,32 @@ interface Props {
 }
 
 const { compactHeader = false } = Astro.props;
+
+const highlightedTerms = [
+  "HDBSCAN",
+  "UMAP",
+  "embeddings",
+  "RAG",
+  "re-ranking",
+  "BigQuery",
+  "machine learning",
+  "deep learning",
+  "natural language",
+  "Analyse patent",
+];
+
+const escapedTerms = highlightedTerms
+  .sort((a, b) => b.length - a.length)
+  .map((term) => term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
+const highlightPattern = new RegExp(`(${escapedTerms.join("|")})`, "gi");
+const highlightSet = new Set(highlightedTerms.map((term) => term.toLowerCase()));
+
+function highlightText(text: string) {
+  return text.split(highlightPattern).filter(Boolean).map((part) => ({
+    text: part,
+    highlight: highlightSet.has(part.toLowerCase()),
+  }));
+}
 ---
 
 <section class="section" aria-labelledby="hackathons-title">
@@ -37,7 +63,11 @@ const { compactHeader = false } = Astro.props;
         </summary>
 
         <div class="detail-card__content detail-card__content--single">
-          <p>{hackathon.summary}</p>
+          <p>
+            {highlightText(hackathon.summary).map((part) =>
+              part.highlight ? <mark class="keyword-mark">{part.text}</mark> : part.text
+            )}
+          </p>
 
           <div class="fact-grid">
             <p><span>Focus</span>{hackathon.focus}</p>
@@ -46,7 +76,13 @@ const { compactHeader = false } = Astro.props;
           </div>
 
           <ul class="impact-list">
-            {hackathon.impactPoints.slice(0, 2).map((point) => <li>{point}</li>)}
+            {hackathon.impactPoints.slice(0, 2).map((point) => (
+              <li>
+                {highlightText(point).map((part) =>
+                  part.highlight ? <mark class="keyword-mark">{part.text}</mark> : part.text
+                )}
+              </li>
+            ))}
           </ul>
 
           {hackathon.links && hackathon.links.length > 0 && (

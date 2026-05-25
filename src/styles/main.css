@@ -7,28 +7,28 @@
 
 :root {
   color-scheme: light;
-  --accent: #516658;
-  --paper-accent: #516658;
-  --paper-accent-blue: #4b6387;
-  --paper-accent-rose: #83565c;
-  --paper-accent-gold: #72562f;
-  --paper-accent-moss: #5a6c48;
-  --paper-blue-soft: #edf2f8;
-  --paper-rose-soft: #f6eeee;
-  --paper-gold-soft: #f5f0e8;
-  --paper-moss-soft: #eef3e8;
-  --paper-bg: #fdfdf9;
-  --paper-bg-deep: #f3f5ef;
-  --paper-surface: #fffffc;
-  --paper-surface-muted: #f7f8f3;
+  --accent: #006cac;
+  --paper-accent: #2f6f55;
+  --paper-accent-blue: #006cac;
+  --paper-accent-rose: #9b4050;
+  --paper-accent-gold: #7a5a24;
+  --paper-accent-moss: #3d6f46;
+  --paper-blue-soft: #eef7ff;
+  --paper-rose-soft: #fff2f4;
+  --paper-gold-soft: #fff8e8;
+  --paper-moss-soft: #f0f8f1;
+  --paper-bg: #fdfdfd;
+  --paper-bg-deep: #f8fafc;
+  --paper-surface: #ffffff;
+  --paper-surface-muted: #f8fafc;
   --paper-surface-rgb: 255, 255, 252;
-  --paper-line: rgba(31, 35, 40, 0.075);
-  --paper-line-strong: rgba(31, 35, 40, 0.12);
-  --paper-ink: #272d28;
-  --paper-ink-soft: #667066;
-  --paper-ink-faint: #90998f;
-  --paper-nav: rgba(255, 255, 252, 0.92);
-  --paper-rule: rgba(73, 88, 75, 0.026);
+  --paper-line: rgba(40, 39, 40, 0.09);
+  --paper-line-strong: rgba(40, 39, 40, 0.16);
+  --paper-ink: #111111;
+  --paper-ink-soft: #262626;
+  --paper-ink-faint: #525252;
+  --paper-nav: rgba(255, 255, 255, 0.94);
+  --paper-rule: rgba(17, 17, 17, 0.01);
   --paper-shadow: 0 1px 2px rgba(31, 35, 40, 0.03), 0 4px 12px rgba(31, 35, 40, 0.02);
   --paper-shadow-lift: 0 1px 2px rgba(31, 35, 40, 0.04), 0 6px 14px rgba(31, 35, 40, 0.025);
   --layout-shell-width: 1168px;
@@ -36,10 +36,10 @@
   --layout-page-gutter: 32px;
   --layout-page-top: 96px;
   --layout-page-bottom: 72px;
-  --font-body: "Maple Mono", "LXGW WenKai", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-body: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-heading: var(--font-body);
-  --font-meta: var(--font-body);
-  --font-code: var(--font-body);
+  --font-meta: "Maple Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-code: var(--font-meta);
 }
 
 * {
@@ -55,8 +55,7 @@ body {
   flex-direction: column;
   min-height: 100vh;
   margin: 0;
-  background: linear-gradient(rgba(226, 231, 224, 0.38), var(--paper-bg)) no-repeat;
-  background-size: 100% 600px;
+  background: var(--paper-bg);
   color: var(--paper-ink);
   font-family: var(--font-body);
   font-size: 16px;
@@ -73,7 +72,7 @@ body::before {
   pointer-events: none;
   background-image: linear-gradient(var(--paper-rule) 1px, transparent 1px);
   background-size: 100% 32px;
-  opacity: 0.28;
+  opacity: 0.12;
 }
 
 a {
@@ -143,6 +142,7 @@ img {
   background: var(--paper-moss-soft);
   color: var(--paper-accent);
   font-size: 0.72rem;
+  font-family: var(--font-meta);
 }
 
 .site-nav__links {
@@ -155,6 +155,7 @@ img {
   padding: 1em 0.55em;
   color: var(--paper-ink-soft);
   font-size: 0.92rem;
+  font-family: var(--font-meta);
 }
 
 .site-nav__link.is-active {
@@ -200,7 +201,7 @@ img {
 .intro-card h1 {
   margin: 0 0 18px;
   color: var(--paper-ink);
-  font-size: clamp(1.72rem, 2.8vw, 2.35rem);
+  font-size: clamp(1.45rem, 2.2vw, 1.95rem);
   font-weight: 400;
   line-height: 1.04;
   white-space: nowrap;
@@ -387,6 +388,10 @@ img {
   font-size: 0.88rem;
 }
 
+.section__meta {
+  font-family: var(--font-meta);
+}
+
 .section__action,
 .text-link,
 .back-link {
@@ -404,6 +409,7 @@ img {
 .eyebrow {
   margin: 0 0 14px;
   color: var(--paper-accent-blue);
+  font-family: var(--font-meta);
   font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -445,6 +451,7 @@ img {
 .article-header p,
 .muted {
   color: var(--paper-accent-gold);
+  font-family: var(--font-meta);
   font-size: 0.85rem;
 }
 
@@ -467,10 +474,13 @@ img {
 .simple-list__item p,
 .entry-card p,
 .video-card p,
-.detail-card p {
+.detail-card p,
+.impact-list li {
   margin: 0;
   color: var(--paper-ink-soft);
+  font-family: var(--font-body);
   font-size: 0.95rem;
+  line-height: 1.8;
 }
 
 .detail-card {
@@ -492,13 +502,14 @@ img {
 
 .detail-card__toggle {
   color: var(--paper-ink-faint);
+  font-family: var(--font-meta);
   font-size: 0.82rem;
 }
 
 .detail-card__content {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 220px;
-  gap: 28px;
+  grid-template-columns: minmax(0, 1fr) 260px;
+  gap: 36px;
   margin-top: 16px;
   color: var(--paper-ink-soft);
 }
@@ -510,6 +521,7 @@ img {
 .detail-card__context {
   margin-bottom: 3px !important;
   color: var(--paper-accent) !important;
+  font-family: var(--font-meta);
   font-size: 0.78rem !important;
   font-weight: 700;
   letter-spacing: 0.04em;
@@ -542,11 +554,23 @@ img {
   padding-left: 18px;
 }
 
+.keyword-mark {
+  background: transparent;
+  padding: 0;
+  color: var(--paper-ink);
+  font-weight: 650;
+}
+
 .detail-card__links {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
   margin-top: 12px;
+}
+
+.detail-card__links--stacked {
+  display: grid;
+  gap: 6px;
 }
 
 .detail-card__video {
@@ -569,12 +593,15 @@ img {
 }
 
 .meta-list {
-  margin: 0 0 12px;
+  display: grid;
+  gap: 14px;
+  margin: 0;
 }
 
 .meta-list dt,
 .fact-grid span {
   color: var(--paper-ink-faint);
+  font-family: var(--font-meta);
   font-size: 0.76rem;
   font-weight: 700;
   letter-spacing: 0.06em;
@@ -583,6 +610,15 @@ img {
 
 .meta-list dd {
   margin: 4px 0 0;
+  color: var(--paper-ink-soft);
+  font-size: 0.9rem;
+  line-height: 1.65;
+}
+
+.meta-list dd a {
+  display: block;
+  width: fit-content;
+  margin-top: 4px;
 }
 
 .tag-list {
@@ -603,6 +639,7 @@ img {
   border-radius: 999px;
   padding: 4px 10px;
   color: var(--paper-ink-soft);
+  font-family: var(--font-meta);
   font-size: 0.78rem;
   line-height: 1.35;
 }
@@ -638,9 +675,9 @@ img {
 
 .fact-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
-  margin: 14px 0;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 10px;
+  margin: 18px 0;
 }
 
 .fact-grid p {
@@ -649,6 +686,10 @@ img {
 
 .fact-grid span {
   display: block;
+  margin-bottom: 2px;
+  color: var(--paper-accent-blue);
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
 }
 
 .timeline-item {
@@ -983,7 +1024,7 @@ img {
   }
 
   .intro-card h1 {
-    font-size: 1.7rem;
+    font-size: 1.45rem;
     white-space: normal;
   }
 

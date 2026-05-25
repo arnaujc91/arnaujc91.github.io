@@ -48,17 +48,31 @@ const { compactHeader = false } = Astro.props;
                 <dt>Stack</dt>
                 <dd>{project.tech}</dd>
               </div>
+
+              {project.link && (
+                <div>
+                  <dt>Repository</dt>
+                  <dd>
+                    <a href={project.link} class="text-link" target="_blank" rel="noopener noreferrer">
+                      GitHub
+                    </a>
+                  </dd>
+                </div>
+              )}
+
+              {project.links && project.links.length > 0 && (
+                <div>
+                  <dt>Pull requests</dt>
+                  <dd>
+                    {project.links.map((link) => (
+                      <a href={link.href} class="text-link" target="_blank" rel="noopener noreferrer">
+                        {link.label}
+                      </a>
+                    ))}
+                  </dd>
+                </div>
+              )}
             </dl>
-
-            <div class="tag-list">
-              {project.tags.slice(0, 3).map((tag) => <span>{tag}</span>)}
-            </div>
-
-            {project.link && (
-              <a href={project.link} class="text-link" target="_blank" rel="noopener noreferrer">
-                View project
-              </a>
-            )}
           </aside>
         </div>
       </details>
