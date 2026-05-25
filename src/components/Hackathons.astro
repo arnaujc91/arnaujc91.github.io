@@ -32,7 +32,6 @@ const { compactHeader = false } = Astro.props;
             <h3>{hackathon.name}</h3>
           </div>
           <div class="detail-card__side">
-            {hackathon.result && <p class="pill">{hackathon.result}</p>}
             <span class="detail-card__toggle" aria-hidden="true">Details</span>
           </div>
         </summary>
@@ -43,13 +42,36 @@ const { compactHeader = false } = Astro.props;
           <div class="fact-grid">
             <p><span>Focus</span>{hackathon.focus}</p>
             <p><span>Team</span>{hackathon.team}</p>
+            {hackathon.result && <p><span>Outcome</span>{hackathon.result}</p>}
           </div>
 
           <ul class="impact-list">
             {hackathon.impactPoints.slice(0, 2).map((point) => <li>{point}</li>)}
           </ul>
 
-          <div class="tag-list">
+          {hackathon.links && hackathon.links.length > 0 && (
+            <div class="detail-card__links">
+              {hackathon.links.map((link) => (
+                <a href={link.href} class="text-link" target="_blank" rel="noopener noreferrer">
+                  {link.label}
+                </a>
+              ))}
+            </div>
+          )}
+
+          {hackathon.video && (
+            <div class="detail-card__video">
+              <iframe
+                src={hackathon.video.embedUrl}
+                title={hackathon.video.title}
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+              ></iframe>
+            </div>
+          )}
+
+          <div class="tag-list" aria-label="Project topics">
             {hackathon.tags.slice(0, 3).map((tag) => <span>{tag}</span>)}
           </div>
         </div>
