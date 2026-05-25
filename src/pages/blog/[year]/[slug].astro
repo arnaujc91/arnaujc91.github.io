@@ -24,7 +24,7 @@ const { Content } = await render(entry);
   {entry.data._styles && <style set:html={entry.data._styles} />}
   <article class="article-shell">
     <header class="article-header">
-      <a class="back-link" href="/blog/">Back to blog</a>
+      <a class="back-link" href="/blog/" data-astro-prefetch>Back to blog</a>
       <h1>{entry.data.title}</h1>
       <p>{formatDate(meta.date)}{entry.data.author && ` - ${entry.data.author}`}</p>
     </header>

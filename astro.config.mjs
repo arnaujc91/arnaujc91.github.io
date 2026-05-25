@@ -4,6 +4,9 @@ import remarkMath from "remark-math";
 
 export default defineConfig({
   site: "https://arnaujc91.github.io",
+  prefetch: {
+    defaultStrategy: "hover",
+  },
   markdown: {
     remarkPlugins: [remarkMath],
     rehypePlugins: [rehypeKatex],

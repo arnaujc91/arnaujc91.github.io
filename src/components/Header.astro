@@ -24,14 +24,14 @@ function isActive(href: string) {
 <header>
   <nav class="site-nav" aria-label="Primary navigation">
     <div class="site-nav__inner">
-      <a class="site-nav__brand" href="/" aria-label={`${fullName} homepage`}>
-        <span class="site-nav__mark">AJ</span>
+      <a class="site-nav__brand" href="/" aria-label={`${fullName} homepage`} data-astro-prefetch>
+        <img class="site-nav__avatar" src="/assets/img/prof_pic.png" alt="" width="30" height="30" loading="eager" />
         <span>{fullName}</span>
       </a>
 
       <div class="site-nav__links">
         {navItems.map((item) => (
-          <a class:list={["site-nav__link", isActive(item.href) && "is-active"]} href={item.href}>
+          <a class:list={["site-nav__link", isActive(item.href) && "is-active"]} href={item.href} data-astro-prefetch>
             {item.title}
           </a>
         ))}

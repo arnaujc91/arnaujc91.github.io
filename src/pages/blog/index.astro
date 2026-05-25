@@ -17,14 +17,14 @@ const posts = (await getCollection("blog"))
     {posts.map(({ entry, meta }) => (
       <article class="entry-card">
         {entry.data.image && (
-          <a class="entry-card__image" href={`/blog/${meta.year}/${meta.slug}/`}>
+          <a class="entry-card__image" href={`/blog/${meta.year}/${meta.slug}/`} data-astro-prefetch>
             <img src={entry.data.image} alt={entry.data.title} />
           </a>
         )}
         <div class="entry-card__body">
           <time>{formatDate(meta.date)}</time>
           <h2>
-            <a href={`/blog/${meta.year}/${meta.slug}/`}>{entry.data.title}</a>
+            <a href={`/blog/${meta.year}/${meta.slug}/`} data-astro-prefetch>{entry.data.title}</a>
           </h2>
           <p>{entry.data.description}</p>
         </div>

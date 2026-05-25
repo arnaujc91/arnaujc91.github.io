@@ -2,6 +2,7 @@
 import { getCollection, render } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import DashboardNav from "../components/DashboardNav.astro";
+import Social from "../components/Social.astro";
 import { datedSlug, formatDate, formatShortDate } from "../lib/content";
 import { fullName, site } from "../site";
 
@@ -37,7 +38,6 @@ const profile = about.data.profile as { image?: string } | undefined;
   <section class="flow-grid" aria-label="Personal dashboard">
     <div class="flow-column main-column">
       <article class="intro-card">
-        <p class="eyebrow">Machine learning engineer · theoretical physics background</p>
         <h1>Hi, I am <em>{site.firstName}</em></h1>
         <div class="intro__body content">
           <Content />
@@ -49,13 +49,13 @@ const profile = about.data.profile as { image?: string } | undefined;
           <div>
             <h2 id="latest-blog-title">Blog</h2>
           </div>
-          <a class="section__action" href="/blog/">All posts</a>
+          <a class="section__action" href="/blog/" data-astro-prefetch>All posts</a>
         </div>
 
         <div class="simple-list">
           {latestPosts.map(({ entry, meta }) => (
             <article class="simple-list__item">
-              <a href={`/blog/${meta.year}/${meta.slug}/`}>
+              <a href={`/blog/${meta.year}/${meta.slug}/`} data-astro-prefetch>
                 <time>{formatDate(meta.date)}</time>
                 <h3>{entry.data.title}</h3>
                 <p>{entry.data.description}</p>
@@ -75,7 +75,9 @@ const profile = about.data.profile as { image?: string } | undefined;
         )}
         <div class="profile-heading">
           <h2>{fullName}</h2>
-          <p>@{site.githubUsername}</p>
+          <div class="profile-social">
+            <Social compact />
+          </div>
           <span>Machine Learning Engineer</span>
         </div>
       </article>
@@ -96,7 +98,7 @@ const profile = about.data.profile as { image?: string } | undefined;
                   {entry.data.inline ? (
                     <Content />
                   ) : (
-                    <a class="text-link" href={`/news/${entry.id.replace(/\.(md|mdx)$/, "")}/`}>
+                    <a class="text-link" href={`/news/${entry.id.replace(/\.(md|mdx)$/, "")}/`} data-astro-prefetch>
                       {entry.data.title}
                     </a>
                   )}
