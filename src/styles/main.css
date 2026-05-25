@@ -267,11 +267,6 @@ img {
   padding: 2px 0 0;
 }
 
-.nav-card__label {
-  display: none;
-  margin: 0;
-}
-
 .nav-card nav {
   display: grid;
   width: 100%;
@@ -1150,18 +1145,6 @@ img {
     order: 3;
   }
 
-  .nav-card__label {
-    display: block;
-    border-top: 1px solid var(--paper-line-strong);
-    padding-top: 20px;
-    margin-bottom: 10px;
-    color: var(--paper-accent-blue);
-    font-size: 0.78rem;
-    font-weight: 700;
-    letter-spacing: 0;
-    text-transform: uppercase;
-  }
-
   .intro-card {
     order: 2;
   }
@@ -1169,6 +1152,10 @@ img {
   .section,
   .side-card {
     order: 4;
+  }
+
+  .section.nav-card {
+    order: 3;
   }
 
   .nav-card nav {
