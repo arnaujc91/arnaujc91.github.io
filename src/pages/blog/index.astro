@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import PageHeader from "../../components/PageHeader.astro";
 import { datedSlug, formatDate } from "../../lib/content";
 import { site } from "../../site";
 
@@ -10,13 +11,9 @@ const posts = (await getCollection("blog"))
 ---
 
 <BaseLayout title="blog" description={site.blogDescription}>
-  <section class="page-header">
-    <p class="eyebrow">Blog</p>
-    <h1>Blog</h1>
-    <p>{site.blogDescription}</p>
-  </section>
+  <PageHeader eyebrow="Blog" title="Blog" description={site.blogDescription} />
 
-  <section class="entry-list" aria-label="Blog posts">
+  <section class="entry-list collection-section" aria-label="Blog posts">
     {posts.map(({ entry, meta }) => (
       <article class="entry-card">
         {entry.data.image && (

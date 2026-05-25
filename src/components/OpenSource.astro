@@ -1,14 +1,54 @@
 ---
 import { openSourceProjects } from "../data/opensource";
+import { makeHighlighter } from "../lib/highlight";
 
 interface Props {
   compactHeader?: boolean;
 }
 
 const { compactHeader = false } = Astro.props;
+
+const highlightedTerms = [
+  "Reinforcement learning",
+  "PyTorch",
+  "policy internals",
+  "actor/critic typing",
+  "actor",
+  "critic",
+  "policy forward interfaces",
+  "distribution handling",
+  "distribution mode",
+  "Batch API",
+  "Batch key API",
+  "deterministic action selection",
+  "Forecasting",
+  "ARIMA",
+  "statsmodels",
+  "statsforecast",
+  "pandas",
+  "adapter compatibility",
+  "MCP",
+  "coding agent",
+  "pywebview",
+  "macOS AppKit",
+  "AppKit",
+  "Dock",
+  "tray/status-bar",
+  "window state management",
+];
+
+const highlightText = makeHighlighter(highlightedTerms);
+
+function projectNumber(index: number) {
+  return String(index + 1).padStart(2, "0");
+}
 ---
 
-<section class="section" aria-labelledby="open-source-title">
+<section
+  class="section collection-section"
+  aria-labelledby={!compactHeader ? "open-source-title" : undefined}
+  aria-label={compactHeader ? "Open Source projects" : undefined}
+>
   {!compactHeader && (
     <div class="section__header">
       <div>
@@ -23,22 +63,43 @@ const { compactHeader = false } = Astro.props;
     </div>
   )}
 
-  <div class="stack-list">
-    {openSourceProjects.map((project) => (
-      <details class="detail-card">
-        <summary class="detail-card__summary">
-          <div>
+  <div class="oss-list">
+    {openSourceProjects.map((project, index) => (
+      <details class="detail-card oss-card">
+        <summary class="detail-card__summary oss-card__summary">
+          <span class="oss-card__index" aria-hidden="true">{projectNumber(index)}</span>
+
+          <div class="oss-card__main">
+            <p class="oss-card__role">{project.role}</p>
             <h3>{project.name}</h3>
-            <p>{project.role}</p>
+            <p class="oss-card__summary-text">
+              {highlightText(project.summary).map((part) =>
+                part.highlight ? <mark class="keyword-mark">{part.text}</mark> : part.text
+              )}
+            </p>
+
+            <div class="tag-list oss-card__tags" aria-label={`${project.name} topics`}>
+              {project.tags.slice(0, 3).map((tag) => <span>{tag}</span>)}
+            </div>
           </div>
-          <span class="detail-card__toggle" aria-hidden="true">Details</span>
+
+          <div class="oss-card__cue">
+            <span>{project.links?.length ?? 0} merged PRs</span>
+            <span class="detail-card__toggle" aria-hidden="true">Details</span>
+          </div>
         </summary>
 
-        <div class="detail-card__content">
+        <div class="detail-card__content oss-card__content">
           <div>
-            <p>{project.summary}</p>
+            <p class="oss-card__label">Selected impact</p>
             <ul class="impact-list">
-              {project.impactPoints.slice(0, 2).map((point) => <li>{point}</li>)}
+              {project.impactPoints.map((point) => (
+                <li>
+                  {highlightText(point).map((part) =>
+                    part.highlight ? <mark class="keyword-mark">{part.text}</mark> : part.text
+                  )}
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -46,7 +107,11 @@ const { compactHeader = false } = Astro.props;
             <dl class="meta-list">
               <div>
                 <dt>Stack</dt>
-                <dd>{project.tech}</dd>
+                <dd>
+                  {highlightText(project.tech).map((part) =>
+                    part.highlight ? <mark class="keyword-mark">{part.text}</mark> : part.text
+                  )}
+                </dd>
               </div>
 
               {project.link && (
@@ -63,10 +128,12 @@ const { compactHeader = false } = Astro.props;
               {project.links && project.links.length > 0 && (
                 <div>
                   <dt>Pull requests</dt>
-                  <dd>
+                  <dd class="oss-card__links">
                     {project.links.map((link) => (
                       <a href={link.href} class="text-link" target="_blank" rel="noopener noreferrer">
-                        {link.label}
+                        {highlightText(link.label).map((part) =>
+                          part.highlight ? <mark class="keyword-mark">{part.text}</mark> : part.text
+                        )}
                       </a>
                     ))}
                   </dd>

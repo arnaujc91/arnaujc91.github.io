@@ -1,20 +1,18 @@
 ---
 import Hackathons from "../components/Hackathons.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHeader from "../components/PageHeader.astro";
 ---
 
 <BaseLayout
   title="hackathons"
   description="Short-form applied projects from hackathons and challenge settings."
 >
-  <section class="page-header page-header--compact">
-    <p class="eyebrow">Applied projects</p>
-    <h1>Hackathons</h1>
-    <p>
-      Time-boxed projects where the useful work is framing the problem quickly, building a prototype,
-      and turning the result into something people can evaluate.
-    </p>
-  </section>
+  <PageHeader
+    eyebrow="Applied projects"
+    title="Hackathons"
+    description="Time-boxed projects where the useful work is framing the problem quickly, building a prototype, and turning the result into something people can evaluate."
+  />
 
   <Hackathons compactHeader />
 </BaseLayout>

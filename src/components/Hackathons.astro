@@ -1,5 +1,6 @@
 ---
 import { hackathons } from "../data/hackathons";
+import { makeHighlighter } from "../lib/highlight";
 
 interface Props {
   compactHeader?: boolean;
@@ -10,31 +11,39 @@ const { compactHeader = false } = Astro.props;
 const highlightedTerms = [
   "HDBSCAN",
   "UMAP",
+  "semantic embeddings",
+  "embedding-based similarity search",
   "embeddings",
+  "nearest-neighbor similarity",
+  "keyword extraction",
+  "unsupervised patent-classification",
+  "patent-classification",
   "RAG",
   "re-ranking",
-  "BigQuery",
+  "grounded responses",
+  "agent pipeline",
+  "abstract retrieval",
+  "natural language",
+  "generative AI",
+  "Finalist",
+  "finalists",
+  "5th place",
+  "synthetic genetic data",
+  "synthetic gene sequence",
+  "genomic data",
   "machine learning",
   "deep learning",
-  "natural language",
   "Analyse patent",
 ];
 
-const escapedTerms = highlightedTerms
-  .sort((a, b) => b.length - a.length)
-  .map((term) => term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
-const highlightPattern = new RegExp(`(${escapedTerms.join("|")})`, "gi");
-const highlightSet = new Set(highlightedTerms.map((term) => term.toLowerCase()));
-
-function highlightText(text: string) {
-  return text.split(highlightPattern).filter(Boolean).map((part) => ({
-    text: part,
-    highlight: highlightSet.has(part.toLowerCase()),
-  }));
-}
+const highlightText = makeHighlighter(highlightedTerms);
 ---
 
-<section class="section" aria-labelledby="hackathons-title">
+<section
+  class="section collection-section"
+  aria-labelledby={!compactHeader ? "hackathons-title" : undefined}
+  aria-label={compactHeader ? "Hackathon projects" : undefined}
+>
   {!compactHeader && (
     <div class="section__header">
       <div>
@@ -70,9 +79,21 @@ function highlightText(text: string) {
           </p>
 
           <div class="fact-grid">
-            <p><span>Focus</span>{hackathon.focus}</p>
+            <p>
+              <span>Focus</span>
+              {highlightText(hackathon.focus).map((part) =>
+                part.highlight ? <mark class="keyword-mark">{part.text}</mark> : part.text
+              )}
+            </p>
             <p><span>Team</span>{hackathon.team}</p>
-            {hackathon.result && <p><span>Outcome</span>{hackathon.result}</p>}
+            {hackathon.result && (
+              <p>
+                <span>Outcome</span>
+                {highlightText(hackathon.result).map((part) =>
+                  part.highlight ? <mark class="keyword-mark">{part.text}</mark> : part.text
+                )}
+              </p>
+            )}
           </div>
 
           <ul class="impact-list">
