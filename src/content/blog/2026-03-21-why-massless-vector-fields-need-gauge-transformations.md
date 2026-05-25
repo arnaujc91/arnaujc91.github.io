@@ -7,6 +7,59 @@ description: A detailed derivation, following the little-group logic of Weinberg
 
 ## Introduction
 
+Gauge invariance is not a quantum idea. It is already built into classical
+electrodynamics.
+
+In the classical theory the physical electric and magnetic fields are
+
+$$
+\mathbf{E}=-\nabla \phi-\frac{\partial \mathbf{A}}{\partial t},
+\qquad
+\mathbf{B}=\nabla\times \mathbf{A}.
+$$
+
+The scalar potential $\phi$ and the vector potential $\mathbf{A}$ are not
+unique. If $\chi(t,\mathbf{x})$ is any sufficiently smooth function, then
+
+$$
+\mathbf{A}\to \mathbf{A}+\nabla\chi,
+\qquad
+\phi\to \phi-\frac{\partial \chi}{\partial t}
+$$
+
+leaves both $\mathbf{E}$ and $\mathbf{B}$ unchanged. This is the ordinary
+gauge invariance of Maxwell theory. In covariant notation, with
+
+$$
+F_{\mu\nu}=\partial_\mu A_\nu-\partial_\nu A_\mu,
+$$
+
+the same statement is simply
+
+$$
+A_\mu \to A_\mu+\partial_\mu \chi,
+\qquad
+F_{\mu\nu}\to F_{\mu\nu}.
+$$
+
+The invariance follows because
+
+$$
+\partial_\mu\partial_\nu\chi-\partial_\nu\partial_\mu\chi=0.
+$$
+
+So even before quantization, the potential $A_\mu$ contains redundant
+information. Classical electrodynamics only assigns direct physical meaning to
+gauge-invariant quantities such as $F_{\mu\nu}$, or equivalently
+$\mathbf{E}$ and $\mathbf{B}$.
+
+The more interesting question is why this same redundancy becomes almost
+unavoidable in quantum field theory. In classical electrodynamics gauge
+invariance may first appear as a curious non-uniqueness of the potentials. In
+relativistic quantum theory it becomes the mechanism that lets a local
+Lorentz-covariant vector field describe a massless spin-1 particle while still
+matching the unitary representations of the Poincare group.
+
 There is a famous statement in quantum field theory:
 
 > if a massless spin-1 particle is described by a Lorentz-covariant field $A_\mu(x)$, then under a Lorentz transformation the field cannot transform as a **pure** four-vector. It must transform as a four-vector **plus** a gauge transformation.
@@ -25,7 +78,9 @@ $$
 
 Why is that unavoidable?
 
-The answer is encoded in the little group of a massless particle. In this post I will follow the logic used by Weinberg and work through the mathematics explicitly.
+The answer is encoded in the way one-particle states transform under spacetime
+symmetries. In this post I will follow the logic used by Weinberg and work
+through the mathematics explicitly.
 
 Before starting, let me make two important clarifications.
 
@@ -47,6 +102,106 @@ So:
 Parity is **not** in the connected Lorentz group. It belongs to the full Lorentz group $O(1,3)$ as a disconnected transformation.
 
 None of that changes the main conclusion of this post: whenever we try to describe a massless helicity-1 particle with a local Lorentz four-vector $A_\mu$, the field must transform up to a gauge shift.
+
+## Why the little group appears
+
+In quantum mechanics the states live in a Hilbert space, and a symmetry is a
+transformation that preserves transition probabilities. Wigner's theorem then
+says that any such symmetry must be represented on the Hilbert space by either
+a unitary or an antiunitary operator. Weinberg phrases the starting point in
+exactly this way: symmetries in quantum mechanics are implemented by operators
+that preserve inner products, with the allowed possibilities being unitary or
+antiunitary.
+
+For continuous spacetime symmetries connected to the identity, such as ordinary
+Lorentz transformations and translations, one uses the unitary branch.
+Antiunitary symmetries appear for transformations like time reversal, but they
+are not the relevant case in the connected Poincare transformations considered
+below.
+
+So in relativistic quantum theory one studies unitary representations of the
+Poincare group: Lorentz transformations plus spacetime translations.
+
+Translations let us label one-particle states by four-momentum. We write such
+states schematically as
+
+$$
+|p,\sigma\rangle,
+$$
+
+where $p^\mu$ is the four-momentum and $\sigma$ denotes any remaining internal
+label, such as spin or helicity.
+
+A Lorentz transformation changes the momentum:
+
+$$
+p^\mu \to {\Lambda^\mu}_\nu p^\nu.
+$$
+
+So the first job of a Lorentz transformation is kinematical: it moves us from
+the state with momentum $p$ to a state with momentum $\Lambda p$. But this does
+not yet tell us how the spin or helicity labels transform.
+
+The key observation is that all momenta with the same invariant mass lie on the
+same Lorentz orbit. Therefore we can choose one convenient reference momentum
+$k^\mu$, called the standard momentum, and obtain any other momentum $p^\mu$ on
+that orbit by some Lorentz transformation $L(p)$:
+
+$$
+p^\mu = {L(p)^\mu}_\nu k^\nu.
+$$
+
+Now apply a Lorentz transformation $\Lambda$ to a state with momentum $p$. There
+are two equivalent ways to compare the internal labels:
+
+1. start at $k$, use $L(p)$ to reach $p$, then use $\Lambda$ to reach
+   $\Lambda p$;
+2. start at $k$ and use the chosen standard transformation $L(\Lambda p)$ to
+   reach $\Lambda p$ directly.
+
+The difference between these two procedures is
+
+$$
+W(\Lambda,p)=L^{-1}(\Lambda p)\,\Lambda\,L(p).
+$$
+
+By construction this transformation leaves the standard momentum fixed:
+
+$$
+W(\Lambda,p)k=k.
+$$
+
+This is the little group. It is not introduced by hand. It appears because once
+we factor out the purely kinematical change of momentum, the only remaining
+freedom is a Lorentz transformation that leaves the reference momentum
+unchanged. That remaining transformation is what acts on the internal labels
+$\sigma$.
+
+This also explains why the boosts are not the main object of classification.
+We are not ignoring boosts. A boost is essential because it moves a particle
+from one momentum to another momentum on the same mass shell. But this motion
+is universal: every particle with the same mass has its momentum moved in the
+same way. By itself it does not tell us whether the particle is spin 0, spin
+$1/2$, spin 1, or something else.
+
+The intrinsic information is what remains after this momentum-changing part has
+been removed. In the formula above, $L(p)$ and $L(\Lambda p)$ account for the
+choice of boosts or standard Lorentz transformations that carry the reference
+momentum $k$ to the actual momentum. The leftover transformation
+$W(\Lambda,p)$ keeps $k$ fixed, so it cannot be changing the momentum anymore.
+It acts only on the internal labels. That is why the little group, rather than
+the boosts themselves, classifies the spin or helicity content of the particle.
+
+So Wigner's classification of one-particle states reduces to this question:
+
+> For a chosen standard momentum $k$, what are the unitary irreducible
+> representations of the subgroup of Lorentz transformations that leaves $k$
+> fixed?
+
+For massive particles this subgroup is $SO(3)$, which is why massive particles
+are classified by ordinary spin. For massless particles the subgroup is
+different, and that difference is exactly where the gauge transformation will
+come from.
 
 ## Step 1: choose the standard null momentum
 
@@ -137,9 +292,39 @@ $$
 
 This is exactly the Lie algebra of $ISO(2)$.
 
-Now suppose we have a **unitary** representation. Then the generators are represented by self-adjoint operators, so in particular $N_1$ and $N_2$ are self-adjoint and, because they commute, they may be simultaneously diagonalized.
+Now suppose we have a **unitary** representation. Then the generators are
+represented by self-adjoint operators, so in particular $N_1$ and $N_2$ are
+self-adjoint. Their eigenvalues must therefore be real. Also, since
 
-So let us choose a simultaneous generalized eigenstate $|\rho,\phi\rangle$ such that
+$$
+[N_1,N_2]=0,
+$$
+
+we can diagonalize them simultaneously, at least in the generalized sense
+appropriate for operators with continuous spectrum.
+
+So let us first write a simultaneous generalized eigenstate as $|n_1,n_2\rangle$:
+
+$$
+N_1 |n_1,n_2\rangle = n_1 |n_1,n_2\rangle,
+\qquad
+N_2 |n_1,n_2\rangle = n_2 |n_1,n_2\rangle.
+$$
+
+Here $n_1$ and $n_2$ are just two real numbers. The notation
+$\rho\cos\phi$ and $\rho\sin\phi$ is only a change to polar coordinates in this
+two-dimensional eigenvalue plane:
+
+$$
+n_1=\rho\cos\phi,
+\qquad
+n_2=\rho\sin\phi,
+\qquad
+\rho=\sqrt{n_1^2+n_2^2}\ge 0.
+$$
+
+With this notation we call the same eigenstate $|\rho,\phi\rangle$, and the
+eigenvalue equations become
 
 $$
 N_1 |\rho,\phi\rangle = \rho\cos\phi\, |\rho,\phi\rangle,
@@ -147,7 +332,7 @@ N_1 |\rho,\phi\rangle = \rho\cos\phi\, |\rho,\phi\rangle,
 N_2 |\rho,\phi\rangle = \rho\sin\phi\, |\rho,\phi\rangle,
 $$
 
-with $\rho\ge 0$.
+with $\rho\ge 0$ by definition.
 
 The number
 
@@ -155,7 +340,10 @@ $$
 \rho^2 = N_1^2 + N_2^2
 $$
 
-is invariant under the little group and labels the irreducible representation.
+is invariant under the rotation generated by $J_3$, because $J_3$ rotates the
+pair $(N_1,N_2)$ without changing its length. This is why $\rho$ labels the
+orbit of translation eigenvalues inside the little-group representation. The
+angle $\phi$ tells us where we are on that orbit.
 
 Now let us see how rotations act on these eigenstates. Since
 
