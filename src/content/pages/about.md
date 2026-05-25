@@ -16,7 +16,7 @@ opensource: true  # includes open source contributions section
 hackathons: true  # includes hackathons section
 ---
 
-I am a machine learning engineer with a theoretical physics background. I did my bachelor's degree in Barcelona at the [UAB](https://www.uab.cat/) and my Master of Science degree at the [LMU](https://www.uni-muenchen.de/index.html) in Munich. I am especially interested in deep learning, physics, and mathematics.
+I am a **machine learning engineer** with a **theoretical physics** background. I did my bachelor's degree in Barcelona at the [UAB](https://www.uab.cat/) and my Master of Science degree at the [LMU](https://www.uni-muenchen.de/index.html) in Munich. I am especially interested in deep learning, physics, and mathematics.
 
 I have worked both as a data scientist (NLP + computer vision) and as a software developer (Java + Angular). You can see the results of a face swapping algorithm that we developed at TNG [here](https://www.heise.de/developer/meldung/Software-ermoeglicht-Deep-Fakes-in-Echtzeit-4500193.html). Afterwards I joined [Machine Learning Reply](https://www.reply.com/machine-learning-reply/de) where I worked as a consultant for Machine Learning related projects and currently I am working for [Zeiss Digital Partners](https://www.zeiss.com/corporate/en/about-zeiss/future/new-business-at-zeiss/zeiss-digital-partners.html) as a Machine Learning Engineer.
 

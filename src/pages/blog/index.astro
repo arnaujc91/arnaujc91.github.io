@@ -11,7 +11,11 @@ const posts = (await getCollection("blog"))
 ---
 
 <BaseLayout title="blog" description={site.blogDescription}>
-  <PageHeader eyebrow="Blog" title="Blog" description={site.blogDescription} />
+  <PageHeader title="Blog">
+    <Fragment slot="description">
+      about <strong>Physics</strong> and <strong>Deep Learning</strong>
+    </Fragment>
+  </PageHeader>
 
   <section class="entry-list collection-section" aria-label="Blog posts">
     {posts.map(({ entry, meta }) => (

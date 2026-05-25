@@ -219,6 +219,14 @@ img {
   margin: 0 0 12px;
 }
 
+.intro__body strong {
+  border-radius: 3px;
+  background: linear-gradient(180deg, transparent 48%, rgba(238, 247, 255, 0.95) 48%);
+  padding: 0 2px;
+  color: var(--paper-accent-blue);
+  font-weight: 700;
+}
+
 .profile-card {
   display: grid;
   justify-items: center;
@@ -259,7 +267,7 @@ img {
 
 .profile-heading span {
   color: var(--paper-accent-rose);
-  font-size: 0.82rem;
+  font-size: 1rem;
 }
 
 .nav-card {
@@ -884,14 +892,22 @@ img {
 }
 
 .page-header h1 {
-  font-size: clamp(1.95rem, 4.1vw, 3rem);
-  line-height: 1.08;
+  font-size: clamp(1.75rem, 3.4vw, 2.55rem);
+  line-height: 1.12;
 }
 
 .page-header p:not(.eyebrow) {
   max-width: 66ch;
-  margin: 12px 0 0;
+  margin: 18px 0 0;
   color: var(--paper-ink-soft);
+}
+
+.page-header strong {
+  border-radius: 3px;
+  background: linear-gradient(180deg, transparent 48%, rgba(238, 247, 255, 0.95) 48%);
+  padding: 0 2px;
+  color: var(--paper-accent-blue);
+  font-weight: 700;
 }
 
 .article-shell {

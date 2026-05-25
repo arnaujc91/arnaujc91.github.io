@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Why a massless spin-2 field transforms with a diffeomorphism
-image: /assets/img/weinberg.jpg
+image: /assets/img/general_relativity.webp
 description: A follow-up to the spin-1 gauge argument, deriving the linearized diffeomorphism invariance of a massless spin-2 field from the little-group structure of quantum mechanics.
 ---
 
